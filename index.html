@@ -6,6 +6,21 @@
 h1 {text-align: center;}
 </style>
 
+<script type="text/javascript">
+  var links = [];
+  var searchLetter = "";
+
+  addData() {
+    links.push(document.getElementById("webLink").value);
+    searchLetter = document.getElementById("searchLetter").value;
+  }
+
+  clearLinkField() {
+    document.getElementById("webLink").value = "";
+  }
+
+</script>
+
 </head>
 <body>
 
@@ -14,11 +29,16 @@ h1 {text-align: center;}
 <!-- User Inputs the website link -->
 <form>
   <label for="webLink">Website Link:</label><br>
-  <input type="text" id="webLink" name="webLink"><br>
+  <input type="text" id="webLink" name="webLink" required><br>
 
   <label for="searchLetter">Letter(s) to Search For:</label><br>
-  <input type="text" id="searchLetter" name="searchLetter"><br>
+  <input type="text" id="searchLetter" name="searchLetter" required><br>
+
+  <button type="submit" name="Add Link" onclick="addData(); clearLinkField()"></button>
 </form>
+
+<<h2> Added Links </h2>
+
 
 </body>
 </html>
