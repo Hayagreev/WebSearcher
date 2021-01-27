@@ -13,15 +13,35 @@ h1 {text-align: center;}
   addData() {
     links.push(document.getElementById("webLink").value);
     searchLetter = document.getElementById("searchLetter").value;
+
+    updateLinkTable();
   }
 
   clearLinkField() {
     document.getElementById("webLink").value = "";
   }
 
+  updateLinkTable() {
+    var table = document.getElementById("linksTable");
+    if (links.length == 1) {
+      table.deleteRow(0);
+
+      var row = table.insertRow(0);
+      var cellLink = row.insertCell(0);
+      cellLink.innerHTML = links[0];
+    } else {
+      for (var i = 0; i < links.length; i++) {
+        var row = table.insertRow(0);
+        var cellLink = row.insertRow(0);
+        cellLink.innerHTML = links[i];
+      }
+    }
+  }
+
 </script>
 
 </head>
+
 <body>
 
 <h1> Welcome to WebSearcher </h1>
@@ -37,8 +57,11 @@ h1 {text-align: center;}
   <button type="submit" name="Add Link" onclick="addData(); clearLinkField()"></button>
 </form>
 
-<<h2> Added Links </h2>
+<h2> Added Links </h2>
 
+<table id="linksTable">
+  <td></td>
+</table>
 
 </body>
 </html>
