@@ -11,33 +11,32 @@ table, td {border: 1px solid black;}
   var links = [];
   var searchLetter = "";
 
-  addData() {
+  function addData() {
     links.push(document.getElementById("webLink").value);
     searchLetter = document.getElementById("searchLetter").value;
     updateLinkTable();
   }
 
-  clearLinkField() {
+
+  function clearLinkField() {
     document.getElementById("webLink").value = "";
   }
 
-  updateLinkTable() {
+  function updateLinkTable() {
     var table = document.getElementById("linksTable");
     if (links.length == 1) {
-      table.deleteRow(0);
-
-      var row = table.insertRow(0);
-      var cellLink = row.insertCell(0);
-      cellLink.innerHTML = links[0];
-    } else {
-      for (var i = 0; i < links.length; i++) {
-        var row = table.insertRow(0);
-        var cellLink = row.insertRow(0);
-        cellLink.innerHTML = links[i];
-      }
+      table.deleteRow(1);
     }
-  }
 
+    var row = table.insertRow(1);
+
+    var deleteImg = row.insertCell(0);
+    deleteImg.innerHTML = "<img src=\"deleteRowImg.png\" width=50px height=50px/>";
+
+    var cellLink = row.insertCell(1);
+    cellLink.innerHTML = links[links.length-1];
+      // alert(cellLink.innerHTML);
+  }
 </script>
 
 </head>
@@ -47,25 +46,23 @@ table, td {border: 1px solid black;}
 <h1> Welcome to WebSearcher </h1>
 
 <!-- User Inputs the website link -->
-<form>
-  <label for="webLink">Website Link:</label><br>
-  <input type="text" id="webLink" name="webLink" required><br>
 
-  <label for="searchLetter">Letter(s) to Search For:</label><br>
-  <input type="text" id="searchLetter" name="searchLetter" required><br>
+<label for="webLink">Website Link:</label><br>
+<input type="text" id="webLink" name="webLink" required><br>
 
-  <button type="submit" name="addLinkButton" onclick="addData(); clearLinkField()">Add Link</button>
-</form>
+<label for="searchLetter">Letter(s) to Search For:</label><br>
+<input type="text" id="searchLetter" name="searchLetter" required><br>
+
+<button name="addLinkButton" onclick="addData()">Add Link</button>
+
 <!--Table that displays links -->
-<table id="linksTable"; width=90%>
-
+<table id="linksTable"; width=50%>
   <tr>
     <th>Added Links</th>
   </tr>
   <tr>
     <td><br /> <br /></td>
   </tr>
-
 </table>
 
 </body>
